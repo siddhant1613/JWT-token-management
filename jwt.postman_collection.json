@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "d375840e-f071-4653-aa7a-737532b48ec3",
+		"name": "jwt",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "apiversion",
+						"value": "0.1",
+						"type": "default"
+					},
+					{
+						"key": "accountType",
+						"value": "saving",
+						"type": "default"
+					},
+					{
+						"key": "messageId",
+						"value": "{{$randomUUID}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"accountType\": \"savingAccount\",\r\n  \"accountNumber\": \"1234567890\",\r\n  \"userType\": \"type A\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/generate/jwt/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"generate",
+						"jwt",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verify token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiJ9.eyJhY2NvdW50TnVtYmVyIjoiMTIzNDU2Nzg5MCIsImFjY291bnRUeXBlIjoic2F2aW5nQWNjb3VudCIsInVzZXJUeXBlIjoidHlwZSBBIiwianRpIjoiMjgyYjQ1ODUtZmU3MC00NzM5LWFmYTQtNzEzODZhODBkOTM2IiwiaWF0IjoxNjgyNDg5NTkyLCJleHAiOjE2ODI0OTAxOTJ9.HNNdQE4lxkRtFgCj6_AbnhDELTLlGfnsoePyi9ifXWBJuZKp54uh2nr5P9GvvAQYOgrU4rM3kX8VIOm3jJ6XdJzxS1khkjE3Oann1ISqMShVoUjtJ7Cx_fkpvJaWdZkblUgHXQxlSooZmRAltsJzpwHJBDMHc7iR4whiKR-5r714Nq-6mjmRejzg69bv6kNyGUXzrAjfyvNZO7BlTwGZOhxshu6Tj3pvI7HFwZMyG74kgqnY6TI3rr_icUvBEa4MtWjiYqfz-mGycXGdrqrzj4J05BSUAQP40PQp3coMIwEzJhhJy8N51e-v96hT-YC3NFK0pxDQVSQWg1z-B6jM9w",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/validate/jwt/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"validate",
+						"jwt",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
